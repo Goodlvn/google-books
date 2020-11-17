@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+
+
+// JD STOP HERE
+
+
+
+
 const BookContext = React.createContext({
   books: [],
   currentBook: {
