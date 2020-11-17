@@ -1,36 +1,36 @@
 const mongoose = require("mongoose");
-const db = require("../models");
+const Book = require("../book.js");
 
 // This file empties the Posts collection and inserts the books below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactcms");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
 
 const bookSeed = [
   {
     title: "Hello World",
-    author: "admin",
+    authors: ["admin"],
     description:
-      "Welcome to your first post! To create posts create a title and body. Don't forget to include your screen name!",
-    date: new Date(Date.now())
+      "Welcome to your first post!asdf To create posts create a title and body. Don't forget to include your screen name!",
+    link: "safs"
   },
   {
-    title: "The Second Post",
-    author: "admin",
-    body:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    date: new Date(Date.now())
+    title: "Hello Worasdfld",
+    authors: ["admiasdfn"],
+    description:
+      "Welcome to your first poasdfst! To create posts create a title and body. Don't forget to include your screen name!",
+      link: "safasdfs"
   },
   {
-    title: "Another One",
-    author: "admin",
-    body:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    date: new Date(Date.now())
+    title: "Hello Wasdforld",
+    authors: ["admasdfin"],
+    description:
+      "Welcome to your asdffirst post! To create posts create a title and body. Don't forget to include your screen name!",
+      link: "safasdssfs"
   }
 ];
 
-db.Post.remove({})
-  .then(() => db.Post.collection.insertMany(bookSeed))
+Book.remove({})
+  .then(() => Book.collection.insertMany(bookSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
