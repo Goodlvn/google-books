@@ -1,18 +1,22 @@
 const router = require("express").Router();
-const db = require("../models");
+const Book = require("../book.js");
 
 router.get("/books", (req, res) => {
-
-    db.Book.find({
-        title: { $regex: new RegExp(req.query.q, "i")}
-    }
-    )
+    Book.find({})
+    .then(dbModel => res.json(dbModel))
 });
 
 router.post("/books", (req, res) => {
-    db.Book.cre
+    Book.create(req.body)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
 })
 
-
+router.delete("/books/:id", (req, res) => {
+    Book.findById({ _id: req.params.id })
+    .then(dbModel => dbModel.remove())
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+})
 
 module.exports = router;
