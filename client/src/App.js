@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+const BookContext = React.createContext({
+  books: [],
+  currentBook: {
+    title: '',
+    authors: [],
+    description: '',
+    image: '',
+    link: ''
+  },
+  savedBooks: [],
+  loading: false,
+  searchTitle: ''
+});
+
+const [books, setBooks] = useState([]);
+const [currentBook, setCurrentBook] = useState({});
+const [savedBooks, setSavedBooks] = useState([]),
+const [loading, setLoading] = useState(false);
+const [searchTitle, setSearchTitle] = useState('');
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Nav />
+      <Jumbotron />
+      <BookContext.Provider value={{books, setBooks, currentBook, setCurrentBook, savedBooks, setSavedBooks, loading, setLoading, searchTitle, setSearchTitle}}></BookContext.Provider>
+      <Switch>
+        <Route exact path='/' component={ Search } />
+        <Route exact path='/saved' component={ Saved } />
+        <Route exact path='/books/:id' component ={ Detail } />
+      </Switch>
+    </Router>
   );
 }
 
