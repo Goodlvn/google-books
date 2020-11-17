@@ -8,7 +8,6 @@ router.get("/google", (req, res) => {
     axios.get("https://www.googleapis.com/books/v1/volumes?q=" + query)
     .then(({ data }) => {
         console.log(data);
-
         res.json(data);
     });
 })
