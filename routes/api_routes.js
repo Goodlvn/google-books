@@ -10,7 +10,7 @@ router.get("/books", (req, res) => {
 });
 
 router.post("/books", (req, res) => {
-    
+    db.Book.cre
 })
 
 
